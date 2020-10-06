@@ -5,14 +5,12 @@ import com.springbackend.models.Employee;
 import com.springbackend.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @CrossOrigin(origins = "http://localhost:4200")
-@Controller
+@RestController
 @RequestMapping("/api/v1")
 public class EmployeeController {
 
@@ -25,5 +23,11 @@ public class EmployeeController {
     @ResponseBody
     public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();
+    }
+
+    // create employee
+    @PostMapping("/employees")
+    public Employee createEmployee(@RequestBody Employee employee) {
+        return this.employeeRepository.save(employee);
     }
 }
