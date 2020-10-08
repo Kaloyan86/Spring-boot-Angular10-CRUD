@@ -22,8 +22,7 @@ export class CreateEmployeeComponent implements OnInit {
     this.employeeService.createEmployee(this.employee).subscribe(data => {
       console.log(data);
       this.goToEmployeeList();
-     
-      
+    
     }, error => console.log(error));
   }
 
